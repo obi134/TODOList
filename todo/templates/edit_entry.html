@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body    {font-family: sans-serif;}
+                h1      {color: #0099cc;}
+                table   {border: 1px solid #bbb; border-collapse: collapse;}
+                th              {border: 1px solid #bbb; background: #0099cc; color: #fff}
+                td              {border: 1px solid #bbb;}
+                table#todolist tr:nth-child(even) { background-color:#ccf3ff; }
+        </style>
+<head>
+  <title>Bearbeite Eintrag: {{ entry_instance.title }}</title>
+</head>
+<body>
+	<h1>Bearbeite Eintrag: {{ entry_instance.title }}</h1>
+	<p> Erstellt: {{ entry_instance.created_date }} </p>
+    
+  	<form action="" method="post">
+    	{% csrf_token %}
+    	<table>
+    		{{ form.as_table }}
+    	</table>
+    	<input type="submit" value="Speichern">
+  	</form>
+</body>
+</html>

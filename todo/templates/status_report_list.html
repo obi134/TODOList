@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+  <head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <style>
+    	body 	{font-family: sans-serif;}
+		h1   	{color: #0099cc;}
+		table 	{border: 1px solid #bbb; border-collapse: collapse;}
+		th		{border: 1px solid #bbb; background: #0099cc; color: #fff}
+		td		{border: 1px solid #bbb;}
+		table#todolist tr:nth-child(even) { background-color:#ccf3ff; }
+	</style> 
+    <title>To-do Liste</title>  
+  </head>  
+  <body>  
+    <h1>To-do Liste</h1>  
+    <a href="../entry/newone">Neuer Eintrag</a>
+    <ul>  
+      <li>Anzahl Aufgaben: {{ todo_items.item_count }}</li>  
+      <li>Diese Woche: {{ todo_items.items_woche }}</li>
+      <li>Hoch: {{ todo_items.items_hoch }}</li>
+      <li>Mittel: {{ todo_items.items_mittel }}</li>
+      <li>Niedrig: {{ todo_items.items_niedrig }}</li>
+      <li>Fertige Aufgaben: {{ todo_items.items_complete }} ({{ todo_items.percent_complete }}%)</li>  
+    </ul>  
+    <table id="todolist">
+    	<tr>
+    		<th>Aufgabe</th>
+    		<th>Liste</th>
+    		<th>Erstellt</th>
+    		<th>Prio</th>
+    		<th>Fertig</th>
+    		<th>Zeitabschätzung</th>
+    		<th>Verbleibende Zeit</th>
+    		<th></th>
+    		<th></th>
+    	</tr>
+{% for item in todo_items.items %}
+		<tr>
+			<td {% if item.completed %}bgcolor="#969696"{% endif %}>
+				{{ item.title }} (Nr. {{ item.id }})
+			</td>
+			<td {% if item.completed %}bgcolor="#969696"{% endif %}>
+				{{ item.todo_list }}
+			</td>
+			<td {% if item.completed %}bgcolor="#969696"{% endif %}>
+				{{ item.created_date }}
+			</td>
+			<td  {% if item.completed %}bgcolor="#969696"{% else %}bgcolor="{{ item.priority_color }}"{% endif %}>
+				{{ item.priority }}
+			</td>
+			<td {% if item.completed %}bgcolor="#969696"{% endif %}>
+				{% if item.completed %}{{ item.date_finished }}{% else %}Nein{% endif %}
+			</td>
+			<td {% if item.completed %}bgcolor="#969696"{% endif %}>
+				{{ item.estimation }}
+			</td>
+			<td {% if item.completed %}bgcolor="#969696"{% endif %}>
+				{{ item.remaining_estimation }}
+			</td>
+			<td {% if item.completed %}bgcolor="#969696"{% endif %}>
+				<a href="../entry/{{ item.id }}/editone">Bearbeiten</a>
+			</td>
+			<td {% if item.completed %}bgcolor="#969696"{% endif %}>
+				<a href="../entry/{{ item.id }}/deleteone">Löschen</a>
+			</td>
+		</tr>
+{% endfor %}
+	</table>
+  </body>  
+</html>
