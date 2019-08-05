@@ -1,5 +1,5 @@
 # ToDoList
-Todo list server in python for running e.g. on raspberry pi.
+Todo list server, written in python by using django, for running e.g. on raspberry pi.
 The ToDo List provides an overview over your ToDos sorted by e.g. priority.
 
 Supported fields:
