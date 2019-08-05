@@ -18,10 +18,24 @@ In python_ToDoList/settings.py:
   - ALLOWED_HOSTS = ["<server-ip_or_dns-name>"]
   - SECRET_KEY = '<generated_key>'
   
+## First Start
+To create the database and a superuser call the following commands:
+
+```
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+```
+Then follow the instructions to create the superuser and start the server by running
+```
+python manage.py runserver 0.0.0.0:8001
+```
+Now the server should be started and you can call in browser `127.0.0.1:8001/admin/` and authenticate with your previously created credentials. You can now create the first list by clicking on the add-symbol next to "Lists", enter the list name and click on save. Now you have the first list, which can be filled. Call in browser `127.0.0.1:8001/reportone/` and find the empty todo list. It's now ready to create yout first entry.
+  
 ## Autostart
 To run on a server automatically, enter the following code in user's crontab (run in terminal: `crontab -e`)
 
-```@reboot python2.7 /opt/scripts/python_ToDoList/manage.py runserver 0.0.0.0:8001```
+```@reboot python2.7 /absolute_path_to_script/manage.py runserver 0.0.0.0:8001```
 
 ## Usage
 
